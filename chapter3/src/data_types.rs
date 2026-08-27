@@ -85,4 +85,22 @@ fn tuples() {
 /// The arrays function demonstrates arrays
 fn arrays() {
     println!("Arrays");
+
+    let months = ["January", "February", "March", "April", "May", "June", "July",
+              "August", "September", "October", "November", "December"];
+    
+    println!("The first month is: {}", months[0]);
+    println!("The last month is: {}", months[11]);
+
+    // Array declaration with explicit type and size
+    let a: [i32; 5] = [1, 2, 3, 4, 5];
+
+    println!("The first element of a is: {}", a[0]);
+    println!("The last element of a is: {}", a[4]);
+
+    // Array initialization with repeated values
+    let b = [3; 5];
+
+    println!("The first element of b is: {}", b[0]);
+    println!("The last element of b is: {}", b[4]);
 }
