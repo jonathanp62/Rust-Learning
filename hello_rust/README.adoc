@@ -1,7 +1,0 @@
-Hello Rust
-----------
-
-A demonstration of a very simple hello, world program.
-
-Current version: 0.1.0.
-~~~~~~~~~~~~~~~~~~~~~~~
