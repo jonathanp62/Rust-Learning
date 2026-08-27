@@ -1,0 +1,4 @@
+Rust Learning
+-------------
+
+This is a repository containing small Rust applications used for learning the language that follow the Rust Programming Language book.
