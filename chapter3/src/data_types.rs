@@ -60,6 +60,26 @@ fn tabular_types() {
 fn tuples() {
     println!("Tuples");
 
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
+    
+    // Tuple destructuring
+    let (x, y, z) = tup;
+    
+    println!("x = {}, y = {}, z = {}", x, y, z);
+
+    let t: (i32, f64, u8) = (500, 6.4, 1);
+
+    // Tuple indexing
+    let five_hundred = t.0;
+    let six_point_four = t.1;
+    let one = t.2;
+    
+    println!("five_hundred = {}, six_point_four = {}, one = {}", five_hundred, six_point_four, one);
+
+    // The tuple without any values has a special name, unit. 
+    // This value and its corresponding type are both written () and represent an empty value
+    // or an empty return type. Expressions implicitly return the unit value if they don’t
+    // return any other value.
 }
 
 /// The arrays function demonstrates arrays
