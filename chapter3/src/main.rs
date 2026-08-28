@@ -17,10 +17,14 @@
 //! cargo run
 //! ```
 
+mod control_flow;
 mod data_types;
+mod functions;
 mod variables;
 
+use control_flow::control_flow;
 use data_types::data_types;
+use functions::functions;
 use variables::variables;
 
 /// The main entry point for application execution.
@@ -29,4 +33,6 @@ use variables::variables;
 fn main() {
     variables();
     data_types();
+    functions();
+    control_flow();
 }
