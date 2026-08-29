@@ -60,9 +60,54 @@ fn loop_statement() {
 /// Demonstrate 'while' statements
 fn while_statement() {
     println!("While statement");
+
+    let mut number = 3;
+
+    while number != 0 {
+        print!("{number}");
+
+        match number {
+            3 => println!("..."),
+            2 => println!(".."),
+            1 => println!("."),
+            _ => println!("Unknown number"),
+        }
+
+        number -= 1;
+    }
+
+    println!("LIFTOFF!!!");
+
+    let a = [10, 20, 30, 40, 50];
+    let mut index = 0;
+
+    while index < 5 {
+        println!("The value is: {}", a[index]);
+
+        index += 1;
+    }
 }
 
 /// Demonstrate 'for' statements
 fn for_statement() {
     println!("For statement");
+
+    let a = [10, 20, 30, 40, 50];
+
+    for element in a {
+        println!("The value is: {element}");
+    }
+
+    for number in (1..4).rev() {
+        print!("{number}");
+
+        match number {
+            3 => println!("..."),
+            2 => println!(".."),
+            1 => println!("."),
+            _ => println!("Unknown number"),
+        }
+    }
+
+    println!("LIFTOFF!!!");
 }
