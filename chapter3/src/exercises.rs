@@ -54,6 +54,28 @@ fn convert_celsius_to_fahrenheit(temp: f64) -> f64 {
 /// Generate the nth Fibonacci number
 fn generate_fibonacci() {
     println!("Generating the nth Fibonacci number");
+
+    println!("The 10th Fibonacci number is {}", compute_nth_fibonacci(10));
+    println!("The 17th Fibonacci number is {}", compute_nth_fibonacci(17));
+}
+
+/// Compute the nth Fibonacci number recursively
+/// 
+/// # Arguments
+/// 
+/// * `n` - The position in the Fibonacci sequence
+/// 
+/// # Returns
+/// 
+/// The nth Fibonacci number
+fn compute_nth_fibonacci(n: u32) -> u32 {
+    if n == 0 {
+        0
+    } else if n == 1 {
+        1
+    } else {
+        compute_nth_fibonacci(n - 1) + compute_nth_fibonacci(n - 2)
+    }
 }
 
 /// Print the lyrics to the song "The Twelve Days of Christmas"
