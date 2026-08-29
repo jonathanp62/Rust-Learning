@@ -19,11 +19,13 @@
 
 mod control_flow;
 mod data_types;
+mod exercises;
 mod functions;
 mod variables;
 
 use control_flow::control_flow;
 use data_types::data_types;
+use exercises::exercises;
 use functions::functions;
 use variables::variables;
 
@@ -35,4 +37,5 @@ fn main() {
     data_types();
     functions();
     control_flow();
+    exercises();
 }
