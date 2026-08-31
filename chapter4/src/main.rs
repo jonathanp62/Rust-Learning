@@ -18,12 +18,15 @@
 //! ```
 
 mod ownership;
+mod references;
 
 use ownership::ownership;
+use references::references;
 
 /// The main entry point for application execution.
 ///
 /// This function is called automatically by the runtime when the binary starts.
 fn main() {
     ownership();
+    references();
 }
