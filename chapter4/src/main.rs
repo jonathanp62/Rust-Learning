@@ -19,9 +19,11 @@
 
 mod ownership;
 mod references;
+mod slices;
 
 use ownership::ownership;
 use references::references;
+use slices::slices;
 
 /// The main entry point for application execution.
 ///
@@ -29,4 +31,5 @@ use references::references;
 fn main() {
     ownership();
     references();
+    slices();
 }
