@@ -51,6 +51,8 @@ fn borrowing() {
 fn reassignment() {
     let mut s = String::from("hello");
 
+    println!("Length of '{}' is {}", s, s.len());
+    
     // The original value is dropped when s is reassigned
     s = String::from("Ahoy");
 
