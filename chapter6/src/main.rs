@@ -18,12 +18,15 @@
 //! ```
 
 mod enum_values;
+mod options;
 
 use enum_values::enum_values;
+use options::options;
 
 /// The main entry point for application execution.
 ///
 /// This function is called automatically by the runtime when the binary starts.
 fn main() {
     enum_values();
+    options();
 }
