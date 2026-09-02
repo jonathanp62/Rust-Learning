@@ -18,9 +18,11 @@
 //! ```
 
 mod enum_values;
+mod match_control_flow;
 mod options;
 
 use enum_values::enum_values;
+use match_control_flow::match_control_flow;
 use options::options;
 
 /// The main entry point for application execution.
@@ -29,4 +31,5 @@ use options::options;
 fn main() {
     enum_values();
     options();
+    match_control_flow();
 }
