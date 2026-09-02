@@ -1,0 +1,14 @@
+# (#)Cargo.toml 0.1.0   09/02/2026
+#
+# @author   Jonathan Parker
+# @version  0.1.0
+# @since    0.1.0
+#
+# Copyright (c) 2026 by Jonathan Parker. MIT license.
+
+[package]
+name = "chapter6"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
