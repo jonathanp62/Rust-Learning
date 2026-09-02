@@ -17,10 +17,12 @@
 //! cargo run
 //! ```
 
+mod concise_control_flow;
 mod enum_values;
 mod match_control_flow;
 mod options;
 
+use concise_control_flow::concise_control_flow;
 use enum_values::enum_values;
 use match_control_flow::match_control_flow;
 use options::options;
@@ -32,4 +34,5 @@ fn main() {
     enum_values();
     options();
     match_control_flow();
+    concise_control_flow();
 }
