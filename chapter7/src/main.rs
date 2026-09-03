@@ -19,6 +19,7 @@
 
 mod calculator;
 mod garden;
+mod restaurant;
 
 use calculator::{add_numbers, subtract_numbers};
 use chapter7::greet;
@@ -34,6 +35,10 @@ fn main() {
     
     calculator_crate();
     garden_crate();
+
+    restaurant::eat_at_restaurant();
+    restaurant::deliver_order();
+    restaurant::back_of_house::fix_incorrect_order();
 }
 
 
