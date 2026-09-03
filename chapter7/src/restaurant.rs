@@ -90,11 +90,14 @@ pub mod back_of_house {
     }
 }
 
+use crate::restaurant::front_of_house::hosting as Host;
+use crate::restaurant::front_of_house::serving as Server;
+
 // Eat at the restaurant
 pub fn eat_at_restaurant() {
-    front_of_house::hosting::add_to_waitlist();
-    front_of_house::hosting::seat_at_table();
-    front_of_house::serving::take_order();
+    Host::add_to_waitlist();
+    Host::seat_at_table();
+    Server::take_order();
 
     let order1 = back_of_house::Appetizer::Soup;
     let order2 = back_of_house::Appetizer::Salad;
@@ -102,8 +105,8 @@ pub fn eat_at_restaurant() {
     println!("Order 1: {:?}", order1);
     println!("Order 2: {:?}", order2);
 
-    front_of_house::serving::serve_order();
-    front_of_house::serving::take_payment();
+    Server::serve_order();
+    Server::take_payment();
 }
 
 // Deliver an order
