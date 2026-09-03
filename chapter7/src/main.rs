@@ -17,12 +17,17 @@
 //! cargo run
 //! ```
 
-use chapter7::{greet, add_numbers};
+mod calculator;
+
+use calculator::{add_numbers, subtract_numbers};
+use chapter7::greet;
 
 /// The main entry point for application execution.
 ///
 /// This function is called automatically by the runtime when the binary starts.
 fn main() {
     greet(&String::from("Jonathan"));
+    
     println!("5 + 3 = {}", add_numbers(5, 3));
+    println!("5 - 3 = {}", subtract_numbers(5, 3));
 }

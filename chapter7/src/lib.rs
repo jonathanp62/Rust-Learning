@@ -20,17 +20,3 @@
 pub fn greet(name: &String) {
     println!("Hello, {}! This is coming from the library crate.", name);
 }
-
-/// Adds two numbers together.
-///
-/// # Arguments
-///
-/// * `a` - An integer to be added.
-/// * `b` - An integer to be added.
-///
-/// # Returns
-///
-/// * `i32` - The sum of the two numbers.
-pub fn add_numbers(a: i32, b: i32) -> i32 {
-    a + b
-}
