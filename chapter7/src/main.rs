@@ -18,9 +18,13 @@
 //! ```
 
 mod calculator;
+mod garden;
 
 use calculator::{add_numbers, subtract_numbers};
 use chapter7::greet;
+
+use crate::garden::fruits::Apple;
+use crate::garden::vegetables::Asparagus;
 
 /// The main entry point for application execution.
 ///
@@ -28,6 +32,22 @@ use chapter7::greet;
 fn main() {
     greet(&String::from("Jonathan"));
     
+    calculator_crate();
+    garden_crate();
+}
+
+
+/// Calculator crate functions.
+fn calculator_crate() {
     println!("5 + 3 = {}", add_numbers(5, 3));
     println!("5 - 3 = {}", subtract_numbers(5, 3));
+}
+
+/// Garden crate functions.
+fn garden_crate() {
+    let vegetable = Asparagus {};
+    let fruit = Apple {};
+
+    println!("I'm growing {vegetable:?}!");
+    println!("I'm also growing {fruit:?}s!");
 }

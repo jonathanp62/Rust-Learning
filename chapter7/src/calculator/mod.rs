@@ -11,6 +11,10 @@
 /// The calculator module provides basic arithmetic operations.
 ///
 /// This module contains functions for adding and subtracting integers.
+/// 
+/// The mod.rs style is older, but still used in some codebases. The
+/// alternative is to put each module in its own file, as we do in the 
+/// garden module.
 
 /// Adds two numbers together.
 ///
