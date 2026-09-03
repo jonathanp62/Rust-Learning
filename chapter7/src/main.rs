@@ -35,10 +35,7 @@ fn main() {
     
     calculator_crate();
     garden_crate();
-
-    restaurant::eat_at_restaurant();
-    restaurant::deliver_order();
-    restaurant::back_of_house::fix_incorrect_order();
+    restaurant_crate();
 }
 
 
@@ -55,4 +52,13 @@ fn garden_crate() {
 
     println!("I'm growing {vegetable:?}!");
     println!("I'm also growing {fruit:?}s!");
+}
+
+
+/// Restaurant crate functions.
+fn restaurant_crate() {
+    restaurant::eat_at_restaurant();
+    restaurant::deliver_order();
+    restaurant::back_of_house::fix_incorrect_order();
+    restaurant::order_summer_breakfast();
 }

@@ -46,6 +46,31 @@ pub mod front_of_house {
 
 // Back of house module
 pub mod back_of_house {
+    // Breakfast struct (All fields are public)
+    pub struct Breakfast {
+        pub toast: String,
+        pub seasonal_fruit: String,
+    }
+
+    // Breakfast methods
+    impl Breakfast {
+        // Create a summer breakfast
+        //
+        // # Arguments
+        //
+        // * `toast` - The type of bread for the breakfast
+        //
+        // # Returns
+        //
+        // * `Breakfast` - A breakfast with the specified toast
+        pub fn summer(toast: &str) -> Breakfast {
+            Breakfast {
+                toast: String::from(toast),
+                seasonal_fruit: String::from("peaches"),
+            }
+        }
+    }
+
     // Fix an incorrect order
     pub fn fix_incorrect_order() {
         cook_order();
@@ -70,4 +95,12 @@ pub fn eat_at_restaurant() {
 // Deliver an order
 pub fn deliver_order() {
     println!("Delivering order...");
+}
+
+// Order a summer breakfast
+pub fn order_summer_breakfast() {
+    let meal = back_of_house::Breakfast::summer("Wheat");
+
+    println!("I'd like {} toast please", meal.toast);
+    println!("I understand that {} are in season", meal.seasonal_fruit);
 }
