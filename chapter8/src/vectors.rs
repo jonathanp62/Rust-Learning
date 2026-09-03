@@ -10,6 +10,7 @@
 
 mod creation;
 mod iteration;
+mod multi_type;
 mod read;
 mod update;
 
@@ -22,4 +23,5 @@ pub fn vectors() {
     update::update_vector(&mut v);
     read::read_vector(&v);
     iteration::iterate_vector(&v);
+    multi_type::multi_type_vector();
 }
