@@ -71,6 +71,13 @@ pub mod back_of_house {
         }
     }
 
+    // Appetizer enum
+    #[derive(Debug)]
+    pub enum Appetizer {
+        Soup,
+        Salad,
+    }
+
     // Fix an incorrect order
     pub fn fix_incorrect_order() {
         cook_order();
@@ -88,6 +95,13 @@ pub fn eat_at_restaurant() {
     front_of_house::hosting::add_to_waitlist();
     front_of_house::hosting::seat_at_table();
     front_of_house::serving::take_order();
+
+    let order1 = back_of_house::Appetizer::Soup;
+    let order2 = back_of_house::Appetizer::Salad;
+
+    println!("Order 1: {:?}", order1);
+    println!("Order 2: {:?}", order2);
+
     front_of_house::serving::serve_order();
     front_of_house::serving::take_payment();
 }
