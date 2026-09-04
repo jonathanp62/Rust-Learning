@@ -17,7 +17,7 @@ use std::collections::HashMap;
 /// # Arguments
 /// 
 /// * `map` - A mutable reference to a hashmap of String and i32
-pub fn update_hashmap(map: &mut HashMap<String, i32>) {    
+pub fn update_hashmap(_map: &mut HashMap<String, i32>) {    
     println!("Updating a hashmap");
     // Add an element to the hashmap
 }

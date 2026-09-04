@@ -25,6 +25,8 @@ fn create_using_new() -> HashMap<String, i32> {
     
     println!("Created an empty hash map: {:?}", scores);
 
+    // Rules of ownership apply when copying or moving values into the hash map
+    
     scores.insert(String::from("Blue"), 10);
     scores.insert(String::from("Yellow"), 50);
     

@@ -31,4 +31,8 @@ pub fn access_hashmap(map: HashMap<String, i32>) {
     println!("Blue score: {:?}", blue_score);
     println!("Yellow score: {:?}", yellow_score);
     println!("Orange score: {:?}", orange_score);
+
+    for (key, value) in &map {
+        println!("{key}: {value}");
+    }
 }
