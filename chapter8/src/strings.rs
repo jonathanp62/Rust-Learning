@@ -8,9 +8,11 @@
 
 // SPDX-License-Identifier: MIT
 
+mod creation;
+
 /// Module that demonstrates string usage in Rust
 
 /// The strings function
 pub fn strings() {
-    println!("Strings");
+    creation::create_strings();
 }
