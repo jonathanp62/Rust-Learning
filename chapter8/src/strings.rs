@@ -9,10 +9,15 @@
 // SPDX-License-Identifier: MIT
 
 mod creation;
+mod update;
 
 /// Module that demonstrates string usage in Rust
 
 /// The strings function
 pub fn strings() {
-    creation::create_strings();
+    let mut s = creation::create_strings();
+    
+    update::update_string(&mut s);
+    update::concatenate("Goodbye, World".to_string(), "!".to_string());
+    update::format_strings("tic".to_string(), "tac".to_string(), "toe".to_string());
 }

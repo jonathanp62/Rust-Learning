@@ -30,6 +30,6 @@ use vectors::vectors;
 /// This function is called automatically by the runtime when the binary starts.
 fn main() {
    vectors();
-   hashmaps();
    strings();
+   hashmaps();
 }
