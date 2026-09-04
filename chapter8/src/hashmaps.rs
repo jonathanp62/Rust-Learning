@@ -8,9 +8,16 @@
 
 // SPDX-License-Identifier: MIT
 
+mod access;
+mod creation;
+mod update;
+
 /// Module that demonstrates hashmap usage in Rust
 
 /// The hashmaps function
 pub fn hashmaps() {
-    println!("Hashmaps");
+    let mut scores = creation::create_hashmaps();
+    
+    update::update_hashmap(&mut scores);    
+    access::access_hashmap(scores);
 }
