@@ -9,6 +9,9 @@
 // SPDX-License-Identifier: MIT
 
 mod creation;
+mod index;
+mod iterate;
+mod slice;
 mod update;
 
 /// Module that demonstrates string usage in Rust
@@ -20,4 +23,8 @@ pub fn strings() {
     update::update_string(&mut s);
     update::concatenate("Goodbye, World".to_string(), "!".to_string());
     update::format_strings("tic".to_string(), "tac".to_string(), "toe".to_string());
+
+    index::index_strings();
+    slice::slice_strings();
+    iterate::iterate_strings();
 }
