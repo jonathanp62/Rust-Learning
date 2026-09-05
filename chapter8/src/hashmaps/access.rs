@@ -17,7 +17,7 @@ use std::collections::HashMap;
 /// # Arguments
 /// 
 /// * `map` - A hashmap of String and i32
-pub fn access_hashmap(map: HashMap<String, i32>) {    
+pub fn access_hashmap(map: &HashMap<String, i32>) {    
     let blue_score = map.get("Blue");
 
     // The get method returns an Option<&V>; if there’s no value for that key in the hash map,
@@ -32,7 +32,7 @@ pub fn access_hashmap(map: HashMap<String, i32>) {
     println!("Yellow score: {:?}", yellow_score);
     println!("Orange score: {:?}", orange_score);
 
-    for (key, value) in &map {
+    for (key, value) in map {
         println!("{key}: {value}");
     }
 }

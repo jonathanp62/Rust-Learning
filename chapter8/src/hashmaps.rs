@@ -19,5 +19,5 @@ pub fn hashmaps() {
     let mut scores = creation::create_hashmaps();
     
     update::update_hashmap(&mut scores);    
-    access::access_hashmap(scores);
+    access::access_hashmap(&scores);
 }

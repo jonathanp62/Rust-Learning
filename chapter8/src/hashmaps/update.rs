@@ -17,7 +17,30 @@ use std::collections::HashMap;
 /// # Arguments
 /// 
 /// * `map` - A mutable reference to a hashmap of String and i32
-pub fn update_hashmap(_map: &mut HashMap<String, i32>) {    
-    println!("Updating a hashmap");
-    // Add an element to the hashmap
+pub fn update_hashmap(map: &mut HashMap<String, i32>) {    
+    overwrite_value(map);
+    insert_if_key_missing(map);
+}
+
+/// The overwrite_value function
+/// 
+/// # Arguments
+/// 
+/// * `map` - A mutable reference to a hashmap of String and i32
+fn overwrite_value(map: &mut HashMap<String, i32>) {
+    map.insert(String::from("Blue"), 25);
+    
+    println!("Overwritten value: {:?}", map);
+}
+
+/// The insert_if_key_missing function
+/// 
+/// # Arguments
+/// 
+/// * `map` - A mutable reference to a hashmap of String and i32
+fn insert_if_key_missing(map: &mut HashMap<String, i32>) {
+    map.entry(String::from("Green")).or_insert(30);
+    map.entry(String::from("Green")).or_insert(30);
+    
+    println!("Inserted value: {:?}", map);
 }
