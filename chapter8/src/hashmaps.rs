@@ -10,6 +10,7 @@
 
 mod access;
 mod creation;
+mod exercises;
 mod update;
 
 /// Module that demonstrates hashmap usage in Rust
@@ -20,4 +21,5 @@ pub fn hashmaps() {
     
     update::update_hashmap(&mut scores);    
     access::access_hashmap(&scores);
+    exercises::exercises();
 }
