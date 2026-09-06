@@ -37,9 +37,13 @@ fn integers() {
 
 /// Convert English words to Pig Latin
 fn pig_latin() {
-    let phrase: String = String::from("The quick brown fox jumps over the lazy dog");
+    let phrase = "The quick brown fox jumps over the lazy dog eating apples";
     
     println!("Phrase: {}", phrase);
+    
+    let result = process_pig_latin(&phrase, false);
+
+    println!("Result: {}", result);
 }
 
 /// Process integers and calculate median and modes
@@ -107,4 +111,65 @@ fn process_integers(ints: &[i32], debug: bool) -> CalculationResult {
         median,
         modes,
     }
+}
+
+/// Process Pig Latin conversion
+/// 
+/// # Arguments
+/// 
+/// * `phrase` - A string slice to convert
+/// * `debug` - A boolean flag to enable debug output
+/// 
+/// # Returns
+/// 
+/// A `String` containing the Pig Latin conversion
+fn process_pig_latin(phrase: &str, debug: bool) -> String {
+    let words = split_into_words(phrase);
+
+    let mut builder = String::new();
+
+    for word in words {
+        if debug {
+            println!("Word: {}", word);
+        }
+
+        // Convert to lowercase and check if it starts with a vowel
+        let lower_word = word.to_lowercase();
+        let first_char = lower_word.chars().next().unwrap();
+        
+        if first_char == 'a' || first_char == 'e' || first_char == 'i' || first_char == 'o' || first_char == 'u' {
+            // Word starts with a vowel, just add "way"
+            builder.push_str(word);
+            builder.push_str("hay ");
+        } else {
+            // Word starts with a consonant, move consonant cluster to end and add "ay"
+            // For simplicity, we'll just move the first letter to the end and add "ay"
+            let mut chars = word.chars();
+            let first_letter = chars.next().unwrap();
+            let rest = chars.as_str();
+
+            builder.push_str(rest);
+            builder.push(first_letter);
+            builder.push_str("ay ");
+        }
+    }
+    
+    if debug {
+        println!("Builder: {}", builder);
+    }
+    
+    builder
+}
+
+/// Split a sentence into words
+/// 
+/// # Arguments
+/// 
+/// * `sentence` - A string slice to split
+/// 
+/// # Returns
+/// 
+/// A vector of string slices representing the words
+fn split_into_words(sentence: &str) -> Vec<&str> {
+    sentence.split_whitespace().collect()
 }
