@@ -1,7 +1,8 @@
+// (#)main.rs   0.1.1   09/07/2026
 // (#)main.rs   0.1.0   08/26/2026
 //
 // @author   Jonathan Parker
-// @version  0.1.0
+// @version  0.1.1
 // @since    0.1.0
 //
 // Copyright (c) 2026 by Jonathan Parker.
@@ -29,30 +30,38 @@ fn main() {
 
     let secret_number = rand::thread_rng().gen_range(1..=100);
 
-    println!("The secret number is: {secret_number}");
+    // println!("The secret number is: {secret_number}");
+
+    let mut number_of_tries = 0;
 
     loop {
         println!("Please input your guess:");
 
-        let mut guess = String::new();  // Variable guess is mutable
+        let mut input = String::new();  // Variable input is mutable
 
-        // Read the user's input into the guess variable when Result's variant is OK
+        // Read the user's input into the input variable when Result's variant is OK
         // If the variant is Err, the expect method will terminate the program
 
         io::stdin()
-            .read_line(&mut guess)
+            .read_line(&mut input)
             .expect("Failed to read line");
 
-        // Parse the guess string into a u32 (shadowing the previous variable)
+        // Parse the input string into an i32
 
-        let guess: u32 = match guess.trim().parse() {
+        let guess: i32 = match input.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
         };
 
-        println!("You guessed: {guess}");
+        // Create a new Guess instance from the parsed input (shadowing the previous variable)
 
-        match guess.cmp(&secret_number) {
+        let guess: Guess = Guess::new(guess);
+        
+        number_of_tries = number_of_tries + 1;
+
+        println!("You guessed: {}", guess.value());
+
+        match guess.value().cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
             Ordering::Equal => {
@@ -60,5 +69,39 @@ fn main() {
                 break;
             }
         }
+    }
+    
+    println!("Number of tries: {}", number_of_tries);
+}
+
+/// A guess for the secret number.
+///
+/// This struct is used to validate that the guess is within the valid range (1-100)
+/// and was introduced in chapter 9 to demonstrate custom validation.
+pub struct Guess {
+    value: i32,
+}
+
+/// Implementation of the Guess struct and also introduced in chapter 9.
+impl Guess {
+    /// Creates a new Guess instance.
+    ///
+    /// # Arguments
+    ///
+    /// * `value` - The guess value to be validated.
+    ///
+    /// # Panics
+    ///
+    /// This function will panic if the value is not within the valid range (1-100).
+    pub fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Guess value must be between 1 and 100, got {value}.");
+        }
+
+        Guess { value }
+    }
+
+    pub fn value(&self) -> i32 {
+        self.value
     }
 }
