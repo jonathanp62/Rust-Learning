@@ -17,9 +17,19 @@
 //! cargo run
 //! ```
 
+mod generics;
+mod lifetimes;
+mod traits;
+
+use generics::generics;
+use lifetimes::lifetimes;
+use traits::traits;
+
 /// The main entry point for application execution.
 ///
 /// This function is called automatically by the runtime when the binary starts.
 fn main() {
-    println!("Chapter 10 exercises");
+    generics();
+    traits();
+    lifetimes();
 }
