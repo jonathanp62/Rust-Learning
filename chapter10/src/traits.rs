@@ -18,6 +18,15 @@ pub trait Summary {
     /// 
     /// * `String` - A string representation of the item
     fn summarize(&self) -> String;
+
+    /// Categorize the item
+    /// 
+    /// # Returns
+    /// 
+    /// * `String` - A string representation of the item category
+    fn categorize(&self) -> String {
+        String::from("Setting the default category")
+    }
 }
 
 /// News Article struct
@@ -85,6 +94,8 @@ pub fn traits() {
     };
 
     println!("New post available: {}", post.summarize());
+    println!("Reply: {}; Repost: {}", post.reply, post.repost);
+    println!("Category: {}", post.categorize());
 
     let article = NewsArticle {
         headline: String::from("Penguins win the Stanley Cup Championship!"),
@@ -97,4 +108,6 @@ pub fn traits() {
     };
 
     println!("New article available! {}", article.summarize());
+    println!("Content: {}", article.content);
+    println!("Category: {}", article.categorize());
 }
