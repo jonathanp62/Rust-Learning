@@ -81,11 +81,19 @@ fn structs_and_methods() {
     /// Implementation of Point struct with generic type T
     impl<T> Point<T> {
         /// Returns a reference to the x field
+        /// 
+        /// # Returns
+        /// 
+        /// * `&T` - A reference to the x field
         fn x(&self) -> &T {
             &self.x
         }
         
         /// Returns a reference to the y field
+        /// 
+        /// # Returns
+        /// 
+        /// * `&T` - A reference to the y field
         fn y(&self) -> &T {
             &self.y
         }       
