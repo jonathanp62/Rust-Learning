@@ -82,6 +82,7 @@ impl Summary for SocialPost {
         format!("{}: {}", self.username, self.content)
     }
 }
+
 /// The traits function
 pub fn traits() {
     let post = SocialPost {
@@ -97,6 +98,8 @@ pub fn traits() {
     println!("Reply: {}; Repost: {}", post.reply, post.repost);
     println!("Category: {}", post.categorize());
 
+    notify(&post);
+
     let article = NewsArticle {
         headline: String::from("Penguins win the Stanley Cup Championship!"),
         location: String::from("Pittsburgh, PA, USA"),
@@ -110,4 +113,19 @@ pub fn traits() {
     println!("New article available! {}", article.summarize());
     println!("Content: {}", article.content);
     println!("Category: {}", article.categorize());
+    
+    notify(&article);
+}
+
+/// Notify function
+/// 
+/// # Arguments
+/// 
+/// * `item` - A reference to an item that implements the Summary trait
+/// 
+/// # Returns
+/// 
+/// * `()` - No return value
+pub fn notify(item: &impl Summary) {
+    println!("Breaking news! {}", item.summarize());
 }
