@@ -8,6 +8,8 @@
 
 // SPDX-License-Identifier: MIT
 
+use std::fmt::{Display, Formatter, Result};
+
 /// Module that demonstrates traits in Rust
 
 /// Summary trait
@@ -19,6 +21,13 @@ pub trait Summary {
     /// * `String` - A string representation of the item
     fn summarize(&self) -> String;
 
+    /// Returns a summarizable item
+    /// 
+    /// # Returns
+    /// 
+    /// * `impl Summary` - A summarizable item
+    fn returns_summarizable(&self) -> impl Summary;
+    
     /// Categorize the item
     /// 
     /// # Returns
@@ -54,6 +63,43 @@ impl Summary for NewsArticle {
     fn summarize(&self) -> String {
         format!("{}, by {} ({})", self.headline, self.author, self.location)
     }
+
+    /// Returns a summarizable news article
+    /// 
+    /// # Returns
+    /// 
+    /// * `impl Summary` - A summarizable news article
+    fn returns_summarizable(&self) -> impl Summary {
+        NewsArticle {
+            headline: self.headline.clone(),
+            location: self.location.clone(),
+            author: self.author.clone(),
+            content: self.content.clone(),
+        }
+    }
+}
+
+/// Implementation of Display trait for News Article
+impl Display for NewsArticle {
+    /// Format the news article for display
+    /// 
+    /// # Arguments
+    /// 
+    /// * `f` - The formatter to write to
+    /// 
+    /// # Returns
+    /// 
+    /// * `Result` - A result indicating success or failure
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        write!(
+            f, 
+            "News Article - Headline: {}; Author: {}; Location: {}; Content: {}", 
+            self.headline, 
+            self.author, 
+            self.location, 
+            self.content
+        )
+    }
 }
 
 /// Social Post struct
@@ -81,6 +127,43 @@ impl Summary for SocialPost {
     fn summarize(&self) -> String {
         format!("{}: {}", self.username, self.content)
     }
+
+    /// Returns a summarizable social media post
+    /// 
+    /// # Returns
+    /// 
+    /// * `impl Summary` - A summarizable social media post
+    fn returns_summarizable(&self) -> impl Summary {
+        SocialPost {
+            username: self.username.clone(),
+            content: self.content.clone(),
+            reply: self.reply,
+            repost: self.repost,
+        }
+    }
+}
+
+/// Implementation of Display trait for Social Post
+impl Display for SocialPost {
+    /// Format the social media post for display
+    /// 
+    /// # Arguments
+    /// 
+    /// * `f` - The formatter to write to
+    /// 
+    /// # Returns
+    /// 
+    /// * `Result` - A result indicating success or failure
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        write!(
+            f, 
+            "Social Post - Username: {}; Content: {}; Reply: {}; Repost: {}", 
+            self.username, 
+            self.content, 
+            self.reply, 
+            self.repost
+        )
+    }
 }
 
 /// The traits function
@@ -94,8 +177,12 @@ pub fn traits() {
         repost: false,
     };
 
+    println!("{}", post.to_string());   // The to_string() method is available because we implemented the Display trait
     println!("New post available: {}", post.summarize());
-    println!("Reply: {}; Repost: {}", post.reply, post.repost);
+    
+    let summarizable_post = post.returns_summarizable();
+    
+    println!("Summarizable post: {}", summarizable_post.summarize());
     println!("Category: {}", post.categorize());
 
     notify(&post);
@@ -110,14 +197,20 @@ pub fn traits() {
         ),
     };
 
+    println!("{}", article);
     println!("New article available! {}", article.summarize());
-    println!("Content: {}", article.content);
+
+    let summarizable_article = article.returns_summarizable();
+    
+    println!("Summarizable article: {}", summarizable_article.summarize());
     println!("Category: {}", article.categorize());
     
     notify(&article);
 }
 
 /// Notify function
+/// Can be also written as: fn notify(item: &(impl Summary + Display))
+/// As well as: fn notify<T>(item: &T) where T: Summary + Display
 /// 
 /// # Arguments
 /// 
@@ -126,6 +219,6 @@ pub fn traits() {
 /// # Returns
 /// 
 /// * `()` - No return value
-pub fn notify(item: &impl Summary) {
+pub fn notify<T: Summary + Display>(item: &T) {
     println!("Breaking news! {}", item.summarize());
 }
