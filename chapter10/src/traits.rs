@@ -206,6 +206,12 @@ pub fn traits() {
     println!("Category: {}", article.categorize());
     
     notify(&article);
+    
+    let pair = Pair::new(1, 2);
+    let strings = Pair::new(String::from("hello"), String::from("world"));
+
+    pair.cmp_display();
+    strings.cmp_display();
 }
 
 /// Notify function
@@ -219,6 +225,53 @@ pub fn traits() {
 /// # Returns
 /// 
 /// * `()` - No return value
-pub fn notify<T: Summary + Display>(item: &T) {
+fn notify<T: Summary + Display>(item: &T) {
     println!("Breaking news! {}", item.summarize());
+}
+
+/// Pair struct
+/// 
+/// # Type Parameters
+/// 
+/// * `T` - The type of the pair
+struct Pair<T> {
+    x: T,
+    y: T,
+}
+
+/// Implementation of Pair struct
+impl<T> Pair<T> {
+    /// Create a new pair
+    /// 
+    /// # Arguments
+    /// 
+    /// * `x` - The first element of the pair
+    /// * `y` - The second element of the pair
+    /// 
+    /// # Returns
+    /// 
+    /// * `Pair<T>` - A new pair
+    fn new(x: T, y: T) -> Self {
+        Self { x, y }
+    }
+}
+
+/// Implementation of Pair struct that only works with types that implement Display and PartialOrd traits
+impl<T: Display + PartialOrd> Pair<T> {
+    /// Compare and display the largest member of the pair
+    /// 
+    /// # Arguments
+    /// 
+    /// * `self` - The pair to compare
+    /// 
+    /// # Returns
+    /// 
+    /// * `()` - No return value
+    fn cmp_display(&self) {
+        if self.x >= self.y {
+            println!("The largest member is x = {}", self.x);
+        } else {
+            println!("The largest member is y = {}", self.y);
+        }
+    }
 }
