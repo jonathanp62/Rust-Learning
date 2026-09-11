@@ -122,6 +122,7 @@ mod tests {
             width: 8,
             height: 7,
         };
+
         let smaller = Rectangle {
             width: 5,
             height: 1,
@@ -150,6 +151,7 @@ mod tests {
             width: 8,
             height: 7,
         };
+        
         let smaller = Rectangle {
             width: 5,
             height: 1,
