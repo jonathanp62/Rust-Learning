@@ -17,8 +17,7 @@ fn main() {
 
     dbg!(&args);
 
-    let query = &args[1];
-    let file_path = &args[2];
+    let (query, file_path) = parse_config(&args);
 
     println!("Searching for {query}");
     println!("In file {file_path}");
@@ -27,4 +26,20 @@ fn main() {
         .expect("Should have been able to read the file");
 
     println!("With text:\n{contents}");
+}
+
+/// Parse command line arguments into query and file path.
+/// 
+/// # Arguments
+/// 
+/// * `args` - A slice of strings containing the command line arguments.
+/// 
+/// # Returns
+/// 
+/// A tuple containing the query and file path.
+fn parse_config(args: &[String]) -> (&str, &str) {
+    let query = &args[1];
+    let file_path = &args[2];
+
+    (query, file_path)
 }
