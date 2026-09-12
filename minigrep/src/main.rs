@@ -17,7 +17,7 @@ fn main() {
 
     dbg!(&args);
 
-    let config = parse_config(&args);
+    let config = Config::new(&args);
 
     println!("Searching for {}", config.query);
     println!("In file {}", config.file_path);
@@ -34,21 +34,21 @@ struct Config {
     file_path: String,
 }
 
-/// Parse command line arguments into query and file path.
-/// 
-/// # Arguments
-/// 
-/// * `args` - A slice of strings containing the command line arguments.
-/// 
-/// # Returns
-/// 
-/// A tuple containing the query and file path.
-fn parse_config(args: &[String]) -> Config {
-    let query = &args[1];
-    let file_path = &args[2];
+/// The config implementation.
+impl Config {
+    /// Create a new config from command line arguments.
+    /// 
+    /// # Arguments
+    /// 
+    /// * `args` - A slice of strings containing the command line arguments.
+    /// 
+    /// # Returns
+    /// 
+    /// A new Config instance.
+    fn new(args: &[String]) -> Config {
+        let query = args[1].clone();
+        let file_path = args[2].clone();
 
-    Config {
-        query: query.clone(),
-        file_path: file_path.clone(),
+        Config { query, file_path }
     }
 }
