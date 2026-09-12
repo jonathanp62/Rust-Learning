@@ -26,6 +26,15 @@ fn main() {
     println!("Searching for {}", config.query);
     println!("In file {}", config.file_path);
 
+    run(config);
+}
+
+/// Run the search with the given configuration.
+/// 
+/// # Arguments
+/// 
+/// * `config` - The configuration for the search.
+fn run(config: Config) {
     let contents = fs::read_to_string(config.file_path)
         .expect("Should have been able to read the file");
 
