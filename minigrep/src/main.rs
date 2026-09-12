@@ -15,6 +15,10 @@ use std::fs;
 fn main() {
     let args: Vec<String> = env::args().collect();
 
+    if args.len() < 3 {
+        panic!("not enough arguments");
+    }
+
     dbg!(&args);
 
     let config = Config::new(&args);
