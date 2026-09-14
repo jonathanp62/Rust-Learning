@@ -91,6 +91,14 @@ impl Config {
         let query = args[1].clone();
         let file_path = args[2].clone();
 
-        Ok(Config { query, file_path })
+        // We’re using the is_ok method on the Result to check whether the environment variable is set,
+        // which means the program should do a case-insensitive search. If the IGNORE_CASE environment
+        // variable isn’t set to anything, is_ok will return false and the program will perform a case-sensitive search.
+        // We don’t care about the value of the environment variable, just whether it’s set or unset,
+        // so we’re checking is_ok rather than using unwrap, expect, or any of the other methods we’ve seen on Result.
+        
+        let ignore_case = env::var("MINIGREP_IGNORE_CASE").is_ok();
+
+        Ok(Config { query, file_path, ignore_case })
     }
 }
