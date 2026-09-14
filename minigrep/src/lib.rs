@@ -1,0 +1,23 @@
+// (#)lib.rs    0.1.0 09/14/2026
+//
+// @author   Jonathan Parker
+// @version  1.0
+// @since    1.0
+//
+// Copyright (c) 2026 by Jonathan Parker.
+
+// SPDX-License-Identifier: MIT
+
+/// Search for a query string in a content string.
+/// 
+/// # Arguments
+/// 
+/// * `query` - The query string to search for.
+/// * `contents` - The content string to search in.
+/// 
+/// # Returns
+/// 
+/// A vector of strings that contain the query string.
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    unimplemented!();
+}

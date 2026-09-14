@@ -8,7 +8,10 @@
 
 // SPDX-License-Identifier: MIT
 
+use minigrep::search;
+
 use std::env;
+use std::error::Error;
 use std::fs;
 use std::process;
 
@@ -26,19 +29,34 @@ fn main() {
     println!("Searching for {}", config.query);
     println!("In file {}", config.file_path);
 
-    run(config);
+    if let Err(e) = run(config) {
+        println!("Application error: {e}");
+        process::exit(1);
+    }
 }
 
 /// Run the search with the given configuration.
+/// The Box<dyn Error> means the function will return a type that implements
+/// the Error trait, but we don’t have to specify what particular type the 
+/// return value will be.
 /// 
 /// # Arguments
 /// 
 /// * `config` - The configuration for the search.
-fn run(config: Config) {
-    let contents = fs::read_to_string(config.file_path)
-        .expect("Should have been able to read the file");
+/// 
+/// # Returns
+/// 
+/// A Result indicating success or an error.
+fn run(config: Config) -> Result<(), Box<dyn Error>> {
+    let contents = fs::read_to_string(config.file_path)?;
 
     println!("With text:\n{contents}");
+
+    for line in search(&config.query, &contents) {
+        println!("{line}");
+    }
+
+    Ok(())
 }
 
 /// Configuration for the search.
