@@ -18,7 +18,7 @@
 /// # Returns
 /// 
 /// A vector of strings that contain the query string.
-pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+pub fn search_case_sensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     let mut results = Vec::new();
 
     for line in contents.lines() {
@@ -67,7 +67,7 @@ safe, fast, productive.
 Pick three.
 Duct tape.";
 
-        assert_eq!(vec!["safe, fast, productive."], search(query, contents));
+        assert_eq!(vec!["safe, fast, productive."], search_case_sensitive(query, contents));
     }
 
     #[test]

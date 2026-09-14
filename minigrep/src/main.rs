@@ -8,7 +8,8 @@
 
 // SPDX-License-Identifier: MIT
 
-use minigrep::search;
+use minigrep::search_case_sensitive;
+use minigrep::search_case_insensitive;
 
 use std::env;
 use std::error::Error;
@@ -51,7 +52,13 @@ fn run(config: Config, debug: bool) -> Result<(), Box<dyn Error>> {
         println!("With text:\n{contents}");
     }
 
-    for line in search(&config.query, &contents) {
+    let results = if config.ignore_case {
+        search_case_insensitive(&config.query, &contents)
+    } else {
+        search_case_sensitive(&config.query, &contents)
+    };
+
+    for line in results {
         println!(">>>{line}<<<");
     }
 
@@ -60,8 +67,9 @@ fn run(config: Config, debug: bool) -> Result<(), Box<dyn Error>> {
 
 /// Configuration for the search.
 struct Config {
-    query: String,
-    file_path: String,
+    pub query: String,
+    pub file_path: String,
+    pub ignore_case: bool,
 }
 
 /// The config implementation.
