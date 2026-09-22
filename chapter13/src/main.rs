@@ -58,8 +58,13 @@ fn run() {
     
     borrowing();
     borrowing_mutably();
+
     sort_rectangles_by_width();
     sort_rectangles_by_height();
+
+    iterating_using_for();
+    iterating_using_next();
+    consuming_the_iterator();
 }
 
 /// Borrowing immutability 
@@ -87,4 +92,36 @@ fn borrowing_mutably() {
 
     borrows_mutably();  // The mutable borrow ends after the closure is run
     println!("After calling closure: {list:?}");
+}
+
+/// Basic iteration
+fn iterating_using_for() {
+    let v1 = vec![1, 2, 3];
+    let v1_iter = v1.iter();
+
+    for val in v1_iter {
+        println!("Got: {val}");
+    }
+}
+
+/// Iteration using next()
+fn iterating_using_next() {
+    let v1 = vec![4, 5, 6];
+    let mut v1_iter = v1.iter();
+
+    println!("Got: {}", v1_iter.next().unwrap());   // Some(&4)
+    println!("Got: {}", v1_iter.next().unwrap());   // Some(&5)
+    println!("Got: {}", v1_iter.next().unwrap());   // Some(&6)
+    println!("Got: {:?}", v1_iter.next());          // None
+}
+
+/// Consuming iterators
+fn consuming_the_iterator() {
+        let v1 = vec![2, 4, 6];
+        let v1_iter = v1.iter();
+        let total: i32 = v1_iter.sum();
+
+        // The v1_iter is no longer available after being consumed
+        
+        println!("Total: {}", total);
 }
