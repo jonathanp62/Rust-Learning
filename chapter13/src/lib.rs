@@ -61,3 +61,53 @@ impl Inventory {
         }
     }
 }
+
+/// Rectangle struct
+#[derive(Debug)]
+pub struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+/// Sort rectangles by width
+pub fn sort_rectangles_by_width() {
+    let mut list = [
+        Rectangle { width: 10, height: 1 },
+        Rectangle { width: 3, height: 5 },
+        Rectangle { width: 7, height: 12 },
+    ];
+
+    // Sort by width using a closure that implements trait FnMut because it is called multiple times
+
+    list.sort_by_key(|r| r.width);
+
+    for r in &list {
+        println!("Rectangle width: {}, height: {}", r.width, r.height);
+    }
+}
+
+
+/// Sort rectangles by height
+pub fn sort_rectangles_by_height() {
+    let mut list = [
+        Rectangle { width: 10, height: 1 },
+        Rectangle { width: 3, height: 5 },
+        Rectangle { width: 7, height: 12 },
+    ];
+
+    // Sort by height using a closure that implements trait FnMut because it is called multiple times
+    // The closure captures the mutable reference to num_sort_operations
+    
+    let mut num_sort_operations = 0;
+
+    list.sort_by_key(|r| {
+        num_sort_operations += 1;
+        r.height
+    });
+
+    for r in &list {
+        println!("Rectangle width: {}, height: {}", r.width, r.height);
+    }
+    
+    println!("Number of sort operations: {}", num_sort_operations);
+}

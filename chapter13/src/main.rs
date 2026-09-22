@@ -10,6 +10,8 @@
 
 use chapter13::Inventory;
 use chapter13::ShirtColor;
+use chapter13::sort_rectangles_by_height;
+use chapter13::sort_rectangles_by_width;
 use std::time::Duration;
 
 use std::thread;
@@ -56,6 +58,8 @@ fn run() {
     
     borrowing();
     borrowing_mutably();
+    sort_rectangles_by_width();
+    sort_rectangles_by_height();
 }
 
 /// Borrowing immutability 
