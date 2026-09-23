@@ -10,6 +10,8 @@
 
 use chapter13::Inventory;
 use chapter13::ShirtColor;
+use chapter13::Shoe;
+use chapter13::get_shoes_in_size;
 use chapter13::sort_rectangles_by_height;
 use chapter13::sort_rectangles_by_width;
 use std::time::Duration;
@@ -65,6 +67,9 @@ fn run() {
     iterating_using_for();
     iterating_using_next();
     consuming_the_iterator();
+    producing_an_iterator();
+
+    shop_for_shoes();
 }
 
 /// Borrowing immutability 
@@ -124,4 +129,36 @@ fn consuming_the_iterator() {
         // The v1_iter is no longer available after being consumed
         
         println!("Total: {}", total);
+}
+
+/// Producing an iterator
+fn producing_an_iterator() {
+    let v1: Vec<i32> = vec![1, 2, 3];
+    let v2: Vec<i32> = v1.iter().map(|x| x + 1).collect();  // The map method returns a new iterator that is consumer by collect
+
+    for val in v2.iter() {
+        println!("Got: {val}"); // Got: 2, Got: 3, Got: 4
+    }
+}
+
+/// Shop for shoes
+fn shop_for_shoes() {
+        let shoes = vec![
+            Shoe {
+                size: 10,
+                style: String::from("sneaker"),
+            },
+            Shoe {
+                size: 13,
+                style: String::from("sandal"),
+            },
+            Shoe {
+                size: 10,
+                style: String::from("boot"),
+            },
+        ];
+
+        let in_size = get_shoes_in_size(shoes, 10);
+        
+        println!("Shoes in size 10: {:?}", in_size);
 }

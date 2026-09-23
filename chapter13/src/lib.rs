@@ -111,3 +111,26 @@ pub fn sort_rectangles_by_height() {
     
     println!("Number of sort operations: {}", num_sort_operations);
 }
+
+/// Shoe struct
+#[derive(PartialEq, Debug)]
+pub struct Shoe {
+    pub size: u32,
+    pub style: String,
+}
+
+/// Get shoes in a specific size
+/// 
+/// # Arguments
+/// 
+/// * `shoes` - A vector of shoes
+/// * `shoe_size` - The size of shoes to filter by
+/// 
+/// # Returns
+/// 
+/// * A vector of shoes in the specified size
+pub fn get_shoes_in_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
+    // The closure captures the shoe size variable from its environment
+    
+    shoes.into_iter().filter(|s| s.size == shoe_size).collect()
+}
