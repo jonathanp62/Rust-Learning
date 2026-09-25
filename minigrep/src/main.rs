@@ -18,9 +18,7 @@ use std::process;
 
 /// Main function.
 fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    let config = Config::build(&args).unwrap_or_else(|err| {
+    let config = Config::build(env::args()).unwrap_or_else(|err| {
         eprintln!("Problem parsing arguments: {err}");
         process::exit(1);
     });
@@ -78,18 +76,23 @@ impl Config {
     /// 
     /// # Arguments
     /// 
-    /// * `args` - A slice of strings containing the command line arguments.
+    /// * `args` - An iter
     /// 
     /// # Returns
     /// 
     /// A Result containing the Config instance or an error message.
-    fn build(args: &[String]) -> Result<Config, &'static str> {
-        if args.len() < 3 {
-            return Err("not enough arguments");
-        }
+    fn build(mut args: impl Iterator<Item = String>) -> Result<Config, &'static str> {
+        args.next();    // Skip the name of the process
 
-        let query = args[1].clone();
-        let file_path = args[2].clone();
+        let query = match args.next() {
+            Some(arg) => arg,
+            None => return Err("Didn't get a query string"),
+        };
+
+        let file_path = match args.next() {
+            Some(arg) => arg,
+            None => return Err("Didn't get a file path"),
+        };
 
         // We’re using the is_ok method on the Result to check whether the environment variable is set,
         // which means the program should do a case-insensitive search. If the IGNORE_CASE environment
